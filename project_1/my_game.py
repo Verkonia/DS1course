@@ -8,8 +8,9 @@ def game_core_v3(number: int = 1) -> int:
     Returns:
         int: Число попыток
     """
-    count = 1
-    predict_number = 50
+    predict_number = 50 # поскольку угадываем значения от 1 до 100, изначально для сравнение берем значение 50
+    count = 1 # поскольку за начальное значение берем число 50, считаем, что 1 попытка угадывания уже есть
+    
     while predict_number != number:
         while  predict_number > number:
             predict_number -= 10
@@ -26,7 +27,7 @@ def game_core_v3(number: int = 1) -> int:
     return count
 
 def score_game(game_core_v3) -> int:
-    """За какое количство попыток в среднем за 1000 подходов угадывает наш алгоритм
+    """За какое количество попыток в среднем за 1000 подходов угадывает наш алгоритм
 
     Args:
         game_core_v3 ([type]): функция угадывания
@@ -35,7 +36,7 @@ def score_game(game_core_v3) -> int:
         int: среднее количество попыток
     """
     count_ls = []
-    #np.random.seed(1)  # фиксируем сид для воспроизводимости
+    np.random.seed(1)  # фиксируем сид для воспроизводимости
     random_array = np.random.randint(1, 101, size=(1000))  # загадали список чисел
 
     for number in random_array:
@@ -46,8 +47,5 @@ def score_game(game_core_v3) -> int:
     return score
 
 
-if __name__ == "__main__":
-    # RUN
-    score_game(game_core_v3)
-
+print('Run benchmarking for game_core_v3: ', end='')
 score_game(game_core_v3)
